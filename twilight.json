@@ -26,6 +26,26 @@
   ],
   "settings": [
     {
+      "id": "alwusta_light_design",
+      "type": "boolean",
+      "format": "switch",
+      "label": "تفعيل هوية الوسطى ستور الفاتحة",
+      "description": "هيدر أبيض وبطاقات بكحلي ولمسات زرقاء.",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "id": "alwusta_show_hero",
+      "type": "boolean",
+      "format": "switch",
+      "label": "عرض افتتاحية الإلكترونيات في الرئيسية",
+      "description": "تظهر مع الهوية الفاتحة. يمكنك إخفاؤها عند استخدام بنر خاص من أقسام الرئيسية.",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
       "type": "static",
       "format": "title",
       "id": "static-label2",

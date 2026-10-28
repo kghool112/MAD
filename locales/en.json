@@ -82,5 +82,17 @@
   "blocks.order_options.subtitle": "Choose from the available options.",
   "blocks.order_options.continue": "Continue",
   "blocks.order_options.total": "Total",
-  "blocks.order_options.required_message": "Please fill in the required fields"
+  "blocks.order_options.required_message": "Please fill in the required fields",
+  "alwusta.home.eyebrow": "Technology for your everyday",
+  "alwusta.home.title": "Your everyday tech.",
+  "alwusta.home.title_accent": "A smarter choice.",
+  "alwusta.home.description": "Discover phones, tablets, computers and accessories that fit your day. A simple way to find what suits you.",
+  "alwusta.home.shop": "Explore products",
+  "alwusta.home.range": "Our range",
+  "alwusta.home.phones": "Phones & tablets",
+  "alwusta.home.computers": "Computers",
+  "alwusta.home.accessories": "Accessories",
+  "alwusta.home.scene_label": "Your next upgrade starts here",
+  "alwusta.home.discover": "Find your next favourite",
+  "alwusta.home.departments": "Explore the store"
 }

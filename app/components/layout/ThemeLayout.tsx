@@ -7,6 +7,8 @@ import { useTranslation } from '@salla.sa/twilight-theme-engine/i18n';
 import { useUser } from '@salla.sa/twilight-theme-engine/hooks/useUser';
 import { Footer } from '@salla.sa/twilight-theme-engine/layout';
 import { Header } from './Header';
+import { AlwustaHero } from '../home/AlwustaHero';
+import { HOME_ROUTE_ID } from '../../lib/routeIds';
 import { ImportantLinksSheet } from './ImportantLinksSheet';
 import { MobileAccountSheet } from './MobileAccountSheet';
 import { MobileBottomBar } from './MobileBottomBar';
@@ -148,17 +150,23 @@ export function ThemeLayout({ children }: ThemeLayoutProps) {
     return lang.subscribe(() => fillComponentTranslations(lang, themeTranslations));
   }, []);
 
+  const isHomePage = useRouterState({
+    select: (state) => state.matches.some((match) => match.routeId === HOME_ROUTE_ID),
+  });
+  const alwustaDesign = theme?.settings?.alwusta_light_design !== false;
+
   const imgRatio = productImageRatio(theme?.settings?.product_card_img_ratio);
 
   return (
     <>
       <div
-        className={`app-inner flex flex-col min-h-full product-card-img--${imgRatio}`}
+        className={`app-inner flex flex-col min-h-full product-card-img--${imgRatio}${alwustaDesign ? ' alwusta-theme' : ''}`}
         suppressHydrationWarning
       >
         <Header navOpen={navOpen} onNavOpenChange={setNavOpen} />
         <MobilePageTitleBar />
         <main id="main-content" className="flex-1">
+          {isHomePage && <AlwustaHero />}
           {children}
         </main>
         <Suspense fallback={null}>
