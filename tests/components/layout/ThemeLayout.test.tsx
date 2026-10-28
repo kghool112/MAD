@@ -1,15 +1,24 @@
 import React from 'react';
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, cleanup } from '@testing-library/react';
 // Its theme translations are the real locale files (`tests/stubs/theme-translations.ts`).
 import { ThemeLayout } from '../../../app/components/layout/ThemeLayout';
+import { HOME_ROUTE_ID } from '../../../app/lib/routeIds';
+
+const { routerState, themeSettings } = vi.hoisted(() => ({
+  routerState: {
+    location: { pathname: '/ar' },
+    matches: [] as { routeId: string }[],
+  },
+  themeSettings: {} as Record<string, unknown>,
+}));
 
 vi.mock('@tanstack/react-router', () => ({
   useRouterState: ({ select }: { select: (s: unknown) => unknown }) =>
-    select({ location: { pathname: '/ar' } }),
+    select(routerState),
 }));
 vi.mock('@salla.sa/twilight-theme-engine/providers', () => ({
-  useTwilight: () => ({ theme: { settings: {} }, store: {} }),
+  useTwilight: () => ({ theme: { settings: themeSettings }, store: {} }),
 }));
 vi.mock('@salla.sa/twilight-theme-engine/i18n', () => ({
   useTranslation: () => ({ t: (_k: string, fb?: string) => fb ?? _k }),
@@ -19,6 +28,10 @@ vi.mock('@salla.sa/twilight-theme-engine/hooks/useUser', () => ({
 }));
 vi.mock('@salla.sa/twilight-theme-engine/layout', () => ({ Footer: () => null }));
 vi.mock('../../../app/components/layout/Header', () => ({ Header: () => null }));
+// Keep layout tests independent of the hero's menu query and providers.
+vi.mock('../../../app/components/home/AlwustaHero', () => ({
+  AlwustaHero: () => <div data-testid="alwusta-hero">hero</div>,
+}));
 vi.mock('../../../app/components/layout/ImportantLinksSheet', () => ({
   ImportantLinksSheet: () => null,
 }));
@@ -50,6 +63,12 @@ function installLang(messages: Record<string, string>) {
   (window as unknown as { salla: unknown }).salla = { lang };
   return { lang, unsubscribe, packLoaded: () => listener?.() };
 }
+
+beforeEach(() => {
+  routerState.location.pathname = '/ar';
+  routerState.matches = [{ routeId: HOME_ROUTE_ID }];
+  for (const key of Object.keys(themeSettings)) delete themeSettings[key];
+});
 
 afterEach(() => {
   cleanup();
@@ -95,5 +114,31 @@ describe("ThemeLayout's component translations", () => {
   it('renders without the SDK, as on the server', () => {
     const { getByText } = render(<ThemeLayout>page</ThemeLayout>);
     expect(getByText('page')).toBeTruthy();
+  });
+});
+
+describe('ThemeLayout home introduction', () => {
+  it('renders the hero on the Arabic home route', () => {
+    const { getByTestId } = render(<ThemeLayout>page</ThemeLayout>);
+    expect(getByTestId('alwusta-hero')).toBeTruthy();
+  });
+
+  it('renders the hero on the English home route', () => {
+    routerState.location.pathname = '/en';
+    const { getByTestId } = render(<ThemeLayout>page</ThemeLayout>);
+    expect(getByTestId('alwusta-hero')).toBeTruthy();
+  });
+
+  it('does not render the hero on another route', () => {
+    routerState.location.pathname = '/ar/cart';
+    routerState.matches = [{ routeId: '/{-$locale}/cart' }];
+    const { queryByTestId } = render(<ThemeLayout>page</ThemeLayout>);
+    expect(queryByTestId('alwusta-hero')).toBeNull();
+  });
+
+  it('removes the identity class when the merchant disables the design', () => {
+    themeSettings.alwusta_light_design = false;
+    const { container } = render(<ThemeLayout>page</ThemeLayout>);
+    expect(container.querySelector('.app-inner')?.classList.contains('alwusta-theme')).toBe(false);
   });
 });
