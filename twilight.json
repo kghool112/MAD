@@ -1,10 +1,10 @@
 {
   "type": "react",
   "name": {
-    "ar": "Alwusta Store",
+    "ar": "الوسطى ستور",
     "en": "Alwusta Store"
   },
-  "repository": "https://github.com/SallaApp/theme-raed-react",
+  "repository": "https://github.com/kghool112/MAD",
   "author_email": "support@salla.sa",
   "features": [
     "mega-menu",

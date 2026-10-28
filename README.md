@@ -1,44 +1,55 @@
-# Alwusta Store
+# الوسطى ستور
 
-React storefront theme starter kit for [Salla](https://salla.sa) stores —
-built with TanStack Start and Vite, rendered server-side in workerd via
-`@salla.sa/twilight-theme-engine`.
+مشروع ثيم React لمتجر الوسطى ستور على سلة، مبني على قالب سلة الرسمي باستخدام TanStack Start وVite.
 
-## Quick start
+## المتطلبات
 
-You need pnpm 10 and Node.js 22 (22.22.2 or later), 24 (24.15.0 or later) or 26+.
+- Node.js 22.22.2 أو أحدث من سلسلة 22، أو 24.15.0 أو أحدث من سلسلة 24، أو 26 فأحدث.
+- pnpm 10 فأحدث، وGit، وSalla CLI.
 
-Scaffold a new theme with the Salla CLI:
+## التشغيل على Windows
 
-```bash
-npx @salla.sa/cli@beta theme create
+افتح PowerShell داخل مجلد المشروع:
+
+```powershell
+pnpm.cmd install --frozen-lockfile
+salla.cmd theme dev
 ```
 
-Or work directly inside a copy of this package:
+افتح رابط المعاينة الذي تطبعه الأداة، واستخدم مسار `/ar` للعربية و`/en` للإنجليزية. أوقف المعاينة باستخدام Ctrl+C.
 
-```bash
-pnpm install
-pnpm dev
+إذا منع PowerShell تشغيل ملفات السكربت، استخدم أوامر `pnpm.cmd` و`salla.cmd` كما في الأمثلة.
+
+## الملفات الأساسية
+
+| المسار | الاستخدام |
+| --- | --- |
+| `app/components/` | مكونات واجهة المتجر |
+| `app/styles/` | الألوان والتنسيقات |
+| `locales/ar.json` و`locales/en.json` | نصوص الواجهة |
+| `twilight.json` | اسم الثيم وإعداداته وأقسام الرئيسية |
+| `public/` | الملفات العامة |
+| `pnpm-lock.yaml` | تثبيت إصدارات الاعتماديات |
+
+راجع `AGENTS.md` قبل تطوير المكونات. ملف `app/routeTree.gen.ts` مولّد تلقائيًا.
+
+## التحقق
+
+```powershell
+pnpm.cmd build
+pnpm.cmd typecheck
+pnpm.cmd test
+pnpm.cmd check:manifest
 ```
 
-Running `salla theme dev` writes a `.env` with `VITE_STORE_DOMAIN`
-(defaults to the demo store), which points the dev server at your store's data,
-and `VITE_TWILIGHT_URL`, the fallback twilight SDK build used only when the
-store's settings don't pin a release (`theme.twilight.version`).
+## ما يُرفع إلى GitHub
 
-## Scripts
+ارفع ملفات المصدر والإعدادات والترجمات وملف القفل. استبعد `node_modules/` وملفات `.env` ونتائج البناء ورموز الدخول، كما يحدد `.gitignore`.
 
-| Script                | Description                         |
-| --------------------- | ----------------------------------- |
-| `pnpm dev`            | Start the Vite dev server (workerd) |
-| `pnpm build`          | Production build                    |
-| `pnpm preview`        | Preview the production build        |
-| `pnpm typecheck`      | TypeScript type checking            |
-| `pnpm test`           | Run the test suite (Vitest)         |
-| `pnpm check:manifest` | Validate `twilight.json`            |
+## الخطوة التالية
 
-## Deployment
+تخصيص الشعار والألوان والصفحة الرئيسية للجوالات والأجهزة اللوحية والكمبيوتر والإكسسوارات، ثم ربط الثيم بمتجر سلة التجريبي. اسم الثيم في الإعدادات منفصل عن اسم المتجر وشعاره القادمين من بيانات سلة.
 
-Salla builds and publishes your theme on its own infrastructure — push to your
-theme repository and the platform takes it from there. No deploy configuration,
-credentials, or server runtime settings ship with this starter kit.
+رفع الملفات إلى GitHub يحفظ المصدر؛ النشر على سلة يتطلب إعداد الربط وإجراءات النشر. راجع بيانات المؤلف والدعم في `twilight.json` قبل النشر؛ ما زالت بيانات الدعم الافتراضية من القالب.
+
+[دليل تطوير سلة](https://docs.salla.dev/twilight/react/start/quick-start) · [المستودع](https://github.com/kghool112/MAD)
