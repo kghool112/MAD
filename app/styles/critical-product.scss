@@ -46,3 +46,6 @@ body {
 html {
   scrollbar-gutter: stable;
 }
+
+// Alwusta identity follows the base styles in full and first-paint sheets.
+@import './04-components/alwusta-brand';

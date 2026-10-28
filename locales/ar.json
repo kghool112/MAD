@@ -82,5 +82,17 @@
   "blocks.order_options.subtitle": "اختر من الخيارات المتاحة.",
   "blocks.order_options.continue": "متابعة",
   "blocks.order_options.total": "الإجمالي",
-  "blocks.order_options.required_message": "يرجى تعبئة الحقول المطلوبة"
+  "blocks.order_options.required_message": "يرجى تعبئة الحقول المطلوبة",
+  "alwusta.home.eyebrow": "تقنية تواكب يومك",
+  "alwusta.home.title": "تقنيتك اليومية،",
+  "alwusta.home.title_accent": "باختيار أذكى.",
+  "alwusta.home.description": "اكتشف الجوالات والأجهزة اللوحية والكمبيوتر والإكسسوارات التي تناسب يومك، في تجربة تسوّق بسيطة وواضحة.",
+  "alwusta.home.shop": "تصفح المنتجات",
+  "alwusta.home.range": "عالم التقنية",
+  "alwusta.home.phones": "جوالات وأجهزة لوحية",
+  "alwusta.home.computers": "كمبيوتر",
+  "alwusta.home.accessories": "إكسسوارات",
+  "alwusta.home.scene_label": "تجربتك التقنية تبدأ من هنا",
+  "alwusta.home.discover": "اكتشف ما يناسبك",
+  "alwusta.home.departments": "تصفح المتجر"
 }

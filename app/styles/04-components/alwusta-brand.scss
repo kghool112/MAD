@@ -1,0 +1,60 @@
+/* Alwusta light identity. Scoped so the merchant can switch it off. */
+.alwusta-theme {
+  --aw-navy: #101e38;
+  --aw-blue: #245eea;
+  --aw-muted: #56667c;
+  --aw-line: #e2e8f1;
+  --aw-surface: #f6f8fc;
+  color: var(--aw-navy);
+  background: #fff;
+}
+.alwusta-theme .site-header__bar {
+  background: #fff;
+  border-bottom-color: var(--aw-line);
+}
+.alwusta-theme .site-header__bar.is-scrolled {
+  box-shadow: 0 8px 28px rgb(16 30 56 / 6%);
+}
+.alwusta-theme .site-header__intro-inner {
+  gap: 8px;
+  padding-block: 20px;
+}
+.alwusta-theme .site-header__intro-title { color: var(--aw-navy); }
+.alwusta-theme .site-header__intro-text { color: var(--aw-muted); }
+.alwusta-theme .header-action {
+  color: var(--aw-navy);
+  border-radius: 12px;
+}
+.alwusta-theme .header-action:hover { background: #edf3ff; color: var(--aw-blue); }
+.alwusta-theme .s-block__title h2 { color: var(--aw-navy); letter-spacing: -.02em; }
+.alwusta-theme .s-product-card-entry,
+.alwusta-theme .product-entry {
+  border: 1px solid var(--aw-line);
+  border-radius: 20px;
+  box-shadow: 0 3px 12px rgb(16 30 56 / 3%);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.alwusta-theme .s-product-card-entry:hover,
+.alwusta-theme .product-entry:hover {
+  border-color: #bdcce5;
+  box-shadow: 0 10px 30px rgb(16 30 56 / 8%);
+}
+.alwusta-theme .s-product-card-content-title a { color: var(--aw-navy); }
+.alwusta-theme .s-product-card-content-footer .s-button-btn {
+  background: var(--aw-navy);
+  border-color: var(--aw-navy);
+  color: #fff;
+  border-radius: 12px;
+}
+.alwusta-theme .s-product-card-content-footer .s-button-btn:hover {
+  background: #21385d;
+  border-color: #21385d;
+}
+.alwusta-theme .slide--cat-entry__media {
+  border: 1px solid var(--aw-line);
+  background: var(--aw-surface);
+}
+@media (prefers-reduced-motion: reduce) {
+  .alwusta-theme .s-product-card-entry,
+  .alwusta-theme .product-entry { transition: none; }
+}
